@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
 :root {
   --background: #ffffff;
@@ -10,6 +11,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-primary: #CBF1F5;
+  --color-secondary: #658C58;
+  --color-accent: #FF9292;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +26,10 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter);
+}
+
+
+.myBtn{
+  @apply bg-secondary text-primary hover:bg-gray-500 sm:px-6
 }
