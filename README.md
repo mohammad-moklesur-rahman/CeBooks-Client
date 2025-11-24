@@ -1,1 +1,1 @@
-Next js, Tailwind CSS,
+Next js, Tailwind CSS, Auth.js,

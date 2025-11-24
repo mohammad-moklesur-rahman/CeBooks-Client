@@ -1,16 +1,30 @@
+"use client";
+
 import Link from "next/link";
 import Logo from "./Logo";
 import MyContainer from "./MyContainer";
+import { useClerk, useUser } from "@clerk/nextjs";
 
 const Navbar = () => {
+  const { signOut } = useClerk();
+  const { user } = useUser();
+
   const menu = (
     <>
-    <li><Link href='/'>Home</Link></li>
-    <li><Link href='/'>All eBooks</Link></li>
-    <li><Link href='/'>About</Link></li>
-    <li><Link href='/'>Blog</Link></li>
+      <li>
+        <Link href="/">Home</Link>
+      </li>
+      <li>
+        <Link href="/">All eBooks</Link>
+      </li>
+      <li>
+        <Link href="/">About</Link>
+      </li>
+      <li>
+        <Link href="/">Blog</Link>
+      </li>
     </>
-  )
+  );
   return (
     <div className="bg-primary">
       <MyContainer>
@@ -50,13 +64,48 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">
-              {menu}
-            </ul>
+            <ul className="menu menu-horizontal px-1">{menu}</ul>
           </div>
           <div className="navbar-end">
-            <Link href='/login' className="btn myBtn rounded-full mr-4">Login</Link>
-            <Link href='/register' className="btn myBtn rounded-full">Register</Link>
+            {user ? (
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  className="avatar avatar-online avatar-placeholder"
+                >
+                  <div className="bg-neutral text-neutral-content w-12 cursor-pointer rounded-full">
+                    <span className="text-xl">AI</span>
+                  </div>
+                </div>
+
+                <ul
+                  tabIndex="-1"
+                  className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+                >
+                  <li>
+                    <a>Desbord</a>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() =>
+                        signOut(() => (window.location.href = "/login"))
+                      }
+                    >
+                      Log Out
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <>
+                <Link href="/login" className="btn myBtn rounded-full mr-4">
+                  Login
+                </Link>
+                <Link href="/register" className="btn myBtn rounded-full">
+                  Register
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </MyContainer>
