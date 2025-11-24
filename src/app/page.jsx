@@ -1,7 +1,12 @@
+import ContentSwiper from "@/components/ContenSwiper";
+
 export default function Home() {
   return (
     <div>
-      <h2>How are You?</h2>
+      {/* Banner Section */}
+      <section data-aos="fade-up" className="bg-[#27374D]">
+        <ContentSwiper />
+      </section>
     </div>
   );
 }

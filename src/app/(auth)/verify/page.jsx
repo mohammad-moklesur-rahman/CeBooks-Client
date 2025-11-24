@@ -23,7 +23,7 @@ export default function VerifyPage() {
   };
 
   return (
-    <div className="h-screen flex flex-col justify-center items-center">
+    <div className="h-screen bg-secondary-content flex flex-col justify-center items-center">
       <h2 className="text-xl mb-3">Verify Email</h2>
       <input
         className="input input-bordered w-64"

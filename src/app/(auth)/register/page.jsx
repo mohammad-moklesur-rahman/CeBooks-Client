@@ -38,7 +38,7 @@ const Register = () => {
   const { openSignIn } = useClerk();
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-secondary-content">
       <MyContainer>
         <div className="sm:w-96 mx-auto bg-gray-200">
           <div>
