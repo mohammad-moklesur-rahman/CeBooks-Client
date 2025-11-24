@@ -18,6 +18,7 @@
   --color-secondary: #658c58;
   --color-secondary-content: #9DB2BF;
   --color-accent: #ff9292;
+  --color-accent-content: #27374D;
 }
 
 @media (prefers-color-scheme: dark) {
