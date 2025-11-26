@@ -44,8 +44,8 @@ _id
                   <figure className="px-4 pt-4">
                     <Image
                       src={Info.thumbnailUrl}
-                      width={50}
-                      height={50}
+                      width={500}
+                      height={500}
                       unoptimized
                       alt={Info.category}
                       className="rounded-xl h-50 w-full"

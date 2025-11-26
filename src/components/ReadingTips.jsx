@@ -29,7 +29,7 @@ const readingTips = [
 
 const ReadingTips = () => {
   return (
-    <div className="bg-primary py-20">
+    <div className="bg-primary pb-20 pt-10">
       <MyContainer>
         <h2
           data-aos="fade-right"

@@ -28,7 +28,7 @@ const RecommendedBooks = () => {
   };
 
   return (
-    <div className="bg-primary-content py-20">
+    <div className="bg-primary-content pb-20 pt-10">
       <MyContainer>
         <div>
           <h2
