@@ -52,9 +52,7 @@ _id
                     />
                   </figure>
                   <div className="card-body">
-                    <h2 className="card-title text-green-500">
-                      {Info.name}
-                    </h2>
+                    <h2 className="card-title text-green-500">{Info.name}</h2>
                     <p className="text-base-100">
                       <span className="font-semibold">Category:</span>{" "}
                       {`${Info.category} | ${Info.subCategory}`}
@@ -68,7 +66,7 @@ _id
                       {Info.price}
                     </p>
                     <div className="card-actions">
-                      <button className="btn myBtn w-full">
+                      <button className="btn myBtn border-yellow-500 w-full">
                         See Details
                       </button>
                     </div>

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
+import MyContainer from "./MyContainer";
 
 const authors = [
   {
@@ -44,41 +45,47 @@ const authors = [
 
 export default function AuthorsSection() {
   return (
-    <section className="bg-primary-content pb-20 pt-10">
-      <h2
-        data-aos="fade-right"
-        className="text-center text-2xl text-green-500 font-bold mb-10"
-      >
-        Featured Authors
-      </h2>
+    <div className="bg-primary-content pb-20 pt-10">
+      <MyContainer>
+        <h2
+          data-aos="fade-right"
+          className="text-center text-2xl text-green-500 font-bold mb-10"
+        >
+          Featured Authors
+        </h2>
 
-      <Marquee pauseOnHover speed={50} gradient={false}>
-        <div data-aos="fade-up" className="flex gap-10 px-4">
-          {authors.map((author, index) => (
-            <div
-              key={index}
-              className="card w-120 h-96 rounded-full bg-accent-content border-3 border-green-500"
-            >
-              <figure>
-                <Image
-                  src={author.photo}
-                  alt={author.name}
-                  width={500}
-                  height={500}
-                  unoptimized
-                  className="h-75 w-full object-cover"
-                />
-              </figure>
+        <Marquee pauseOnHover speed={50} gradient={false}>
+          <div data-aos="fade-up" className="flex gap-10 px-4">
+            {authors.map((author, index) => (
+              <div
+                key={index}
+                className="card w-120 h-96 rounded-full bg-accent-content border-3 border-green-500"
+              >
+                <figure>
+                  <Image
+                    src={author.photo}
+                    alt={author.name}
+                    width={500}
+                    height={500}
+                    unoptimized
+                    className="h-75 w-full object-cover"
+                  />
+                </figure>
 
-              <div className="px-8 mt-4 text-center w-full h-full">
-                <h3 className="text-green-500 text-[20px] font-bold">{author.name}</h3>
-                <p className="text-base-100 my-2">{author.description}</p>
-                <p className="text-yellow-500 font-semibold">{author.books}</p>
+                <div className="px-8 mt-4 text-center w-full h-full">
+                  <h3 className="text-green-500 text-[20px] font-bold">
+                    {author.name}
+                  </h3>
+                  <p className="text-base-100 my-2">{author.description}</p>
+                  <p className="text-yellow-500 font-semibold">
+                    {author.books}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </Marquee>
-    </section>
+            ))}
+          </div>
+        </Marquee>
+      </MyContainer>
+    </div>
   );
 }
