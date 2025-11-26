@@ -33,10 +33,11 @@ _id
         >
           Latest Additions
         </h2>
-        <div data-aos="fade-up">
+        <div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {latestData.map((Info) => (
               <div
+                data-aos="fade-up"
                 key={Info._id}
                 className="hover:scale-105 cursor-pointer transition-transform duration-200"
               >
