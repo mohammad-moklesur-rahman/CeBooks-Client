@@ -4,10 +4,11 @@ import Link from "next/link";
 import Logo from "./Logo";
 import MyContainer from "./MyContainer";
 import { useClerk, useUser } from "@clerk/nextjs";
+import Image from "next/image";
 
 const Navbar = () => {
   const { signOut } = useClerk();
-  const { user } = useUser();
+  const { isLoaded, isSignedIn, user } = useUser();
 
   const menu = (
     <>
@@ -15,16 +16,20 @@ const Navbar = () => {
         <Link href="/">Home</Link>
       </li>
       <li>
-        <Link href="/">All eBooks</Link>
+        <Link href="/all-ebooks">All eBooks</Link>
       </li>
       <li>
-        <Link href="/">About</Link>
+        <Link href="/about">About</Link>
       </li>
       <li>
-        <Link href="/">Blog</Link>
+        <Link href="/blog">Blog</Link>
       </li>
     </>
   );
+
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="bg-primary">
       <MyContainer>
@@ -74,7 +79,7 @@ const Navbar = () => {
                   className="avatar avatar-online avatar-placeholder"
                 >
                   <div className="bg-neutral text-neutral-content w-12 cursor-pointer rounded-full">
-                    <span className="text-xl">AI</span>
+                    <span className="text-xl"><Image src={user?.imageUrl} width={50} height={50} alt={user?.fullName || "User Avatar"} /></span>
                   </div>
                 </div>
 

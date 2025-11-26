@@ -1,7 +1,7 @@
 import blogs from "@/data/blogs";
 import Image from "next/image";
 
-export default async function LatestBlogs() {
+export default async function Blogs() {
   return (
     <div className="bg-base-200 py-16">
       <div className="max-w-6xl mx-auto px-4">
@@ -10,14 +10,14 @@ export default async function LatestBlogs() {
         </h2>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {blogs.slice(0, 3).map((blog) => (
+          {blogs.map((blog) => (
             <div key={blog.id} className="card bg-base-100 shadow-xl">
               <figure>
                 <Image
-                  src={blog.photo}
-                  alt={blog.category}
-                  width={50}
-                  height={50}
+                  src={blog.image}
+                  alt={blog.title}
+                  width={500}
+                  height={300}
                   className="h-48 w-full object-cover"
                 />
               </figure>

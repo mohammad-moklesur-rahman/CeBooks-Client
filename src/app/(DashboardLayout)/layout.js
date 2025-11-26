@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { HiOutlineDocumentAdd } from "react-icons/hi";
+import { TiDocumentDelete } from "react-icons/ti";
 
 export default function DashboardLayout({ children }) {
   return (
@@ -73,7 +74,7 @@ export default function DashboardLayout({ children }) {
             <li>
               <Link
                 href="/addebook"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right py-2.5"
                 data-tip="Add eBook"
               >
                 {/* add document icon */}
@@ -81,6 +82,20 @@ export default function DashboardLayout({ children }) {
                 <span className="is-drawer-close:hidden">Add eBook</span>
               </Link>
             </li>
+            
+            {/*Manage item */}
+            <li>
+              <Link
+                href="/manage-ebook"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right py-2.5"
+                data-tip="Manage eBook"
+              >
+                {/* add document icon */}
+                <TiDocumentDelete size={20} />
+                <span className="is-drawer-close:hidden">Manage eBook</span>
+              </Link>
+            </li>
+
           </ul>
         </div>
       </div>
