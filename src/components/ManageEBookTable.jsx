@@ -6,6 +6,7 @@ import MyContainer from "./MyContainer";
 import { useUser } from "@clerk/nextjs";
 import Swal from "sweetalert2";
 import LoadingSpinner from "./LoadingSpinner";
+import ViewModal from "./ViewModal";
 
 const ManageEBookTable = () => {
   const { user } = useUser();
@@ -57,8 +58,8 @@ const ManageEBookTable = () => {
       }
     });
   };
-  
-  if (loading) return <LoadingSpinner />
+
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="bg-primary-content px-2 pb-20 pt-10">
@@ -109,9 +110,9 @@ const ManageEBookTable = () => {
                       <td>{p.location}</td>
                       <td>{p.date}</td>
                       <td>
-                        <button className="btn btn-sm bg-accent mr-2">
-                          View
-                        </button>
+                        {/* for modal */}
+                        <ViewModal id={p._id} />
+
                         <button
                           className="btn btn-sm btn-error"
                           onClick={() => handleDelete(p._id)}
