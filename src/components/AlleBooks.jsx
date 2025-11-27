@@ -5,19 +5,21 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import MyContainer from "./MyContainer";
 import Link from "next/link";
+import DataLoading from "./DataLoading";
 
 const AlleBooks = () => {
   const [data, setData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [loadingSearch, setLoadingSearch] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const router = useRouter();
   const searchTimeout = useRef(null);
 
   // Fetch eBooks
   async function getAlleBooks() {
-    const res = await fetch("http://localhost:5000/api/ebooks", {
+    const res = await fetch("https://cebooks.vercel.app/api/ebooks", {
       cache: "no-store",
     });
     return await res.json();
@@ -26,8 +28,10 @@ const AlleBooks = () => {
   // FIXED: Async loading
   useEffect(() => {
     async function loadBooks() {
+      setLoading(true);
       const latestData = await getAlleBooks();
       setData(latestData);
+      setLoading(false);
     }
     loadBooks();
   }, []);
@@ -112,59 +116,72 @@ const AlleBooks = () => {
             </div>
           </div>
 
-          {/* Searching... */}
-          {loadingSearch ? (
-            <div className="text-center py-20 animate-pulse text-accent font-semibold">
-              Searching...
-            </div>
-          ) : filteredData.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredData.map((Info) => (
-                <div
-                  data-aos="fade-up"
-                  key={Info._id}
-                  className="hover:scale-105 cursor-pointer transition-transform duration-200"
-                >
-                  <div className="card bg-accent-content h-full shadow-sm">
-                    <figure className="px-4 pt-4">
-                      <Image
-                        src={Info.thumbnailUrl}
-                        width={500}
-                        height={500}
-                        unoptimized
-                        alt={Info.category}
-                        className="rounded-xl h-50 w-full"
-                      />
-                    </figure>
-                    <div className="card-body">
-                      <h2 className="card-title text-green-500">{Info.name}</h2>
-                      <p className="text-base-100">
-                        <span className="font-semibold">Category:</span>{" "}
-                        {`${Info.category} | ${Info.subCategory}`}
-                      </p>
-                      <p className="text-base-100">
-                        <span className="font-semibold ">Location:</span>{" "}
-                        {Info.location}
-                      </p>
-                      <p className="text-base-100">
-                        <span className="font-semibold">Price:</span> $
-                        {Info.price}
-                      </p>
-                      <div className="card-actions">
-                        <Link
-                          href={`/all-ebooks/${Info._id}`}
-                          className="btn btn-outline text-yellow-500 mt-2 hover:bg-gray-600 w-full"
-                        >
-                          See Details
-                        </Link>
+          {/* ⭐ INITIAL LOADING SPINNER */}
+          {loading && (
+            <DataLoading />
+          )}
+
+          {!loading && (
+            <div>
+              {/* Searching... */}
+              {loadingSearch ? (
+                <div className="text-center py-20 animate-pulse text-accent font-semibold">
+                  Searching...
+                </div>
+              ) : filteredData.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 lg:px-0">
+                  {filteredData.map((Info) => (
+                    <div
+                      data-aos="fade-up"
+                      key={Info._id}
+                      className="hover:scale-105 cursor-pointer transition-transform duration-200"
+                    >
+                      <div className="card bg-accent-content h-full shadow-sm">
+                        <figure className="px-4 pt-4">
+                          <Image
+                            src={Info.thumbnailUrl}
+                            width={500}
+                            height={500}
+                            unoptimized
+                            alt={Info.category}
+                            className="rounded-xl h-50 w-full"
+                          />
+                        </figure>
+                        <div className="card-body">
+                          <h2 className="card-title text-green-500">
+                            {Info.name}
+                          </h2>
+                          <p className="text-base-100">
+                            <span className="font-semibold">Category:</span>{" "}
+                            {`${Info.category} | ${Info.subCategory}`}
+                          </p>
+                          <p className="text-base-100">
+                            <span className="font-semibold ">Location:</span>{" "}
+                            {Info.location}
+                          </p>
+                          <p className="text-base-100">
+                            <span className="font-semibold">Price:</span> $
+                            {Info.price}
+                          </p>
+                          <div className="card-actions">
+                            <Link
+                              href={`/all-ebooks/${Info._id}`}
+                              className="btn btn-outline text-yellow-500 mt-2 hover:bg-gray-600 w-full"
+                            >
+                              See Details
+                            </Link>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
+              ) : (
+                <p className="text-center py-10 text-gray-500">
+                  No eBooks found.
+                </p>
+              )}
             </div>
-          ) : (
-            <p className="text-center py-10 text-gray-500">No eBooks found.</p>
           )}
         </div>
       </MyContainer>

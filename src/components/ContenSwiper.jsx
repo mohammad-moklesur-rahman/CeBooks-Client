@@ -52,7 +52,7 @@ export default function ContenSwiper() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <div className="grid grid-cols-2 mx-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 mx-20">
             {/* content area */}
             <div className="flex justify-center items-center h-[88vh]">
               <div className="text-[20px] font-bold text-green-500 animate__animated animate__backInLeft">
@@ -80,7 +80,7 @@ export default function ContenSwiper() {
         </SwiperSlide>
 
         <SwiperSlide>
-          <div className="grid grid-cols-2 mx-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 mx-20">
             {/* content area */}
             <div className="flex justify-center items-center h-[88vh]">
               <div className="flex justify-center items-center h-[88vh]">
@@ -110,7 +110,7 @@ export default function ContenSwiper() {
         </SwiperSlide>
 
         <SwiperSlide>
-          <div className="grid grid-cols-2 mx-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 mx-20">
             {/* content area */}
             <div className="flex justify-center items-center h-[88vh]">
               <div className="text-[20px] font-bold text-green-500">

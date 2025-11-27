@@ -59,7 +59,7 @@ export default function AuthorsSection() {
             {authors.map((author, index) => (
               <div
                 key={index}
-                className="card w-120 h-96 rounded-full bg-accent-content border-3 border-green-500"
+                className="card w-75 h-75 md:w-120 md:h-96 rounded-full bg-accent-content border-3 border-green-500"
               >
                 <figure>
                   <Image
@@ -72,7 +72,7 @@ export default function AuthorsSection() {
                   />
                 </figure>
 
-                <div className="px-8 mt-4 text-center w-full h-full">
+                <div className="px-8 pb-4 sm:pb-0 mt-4 text-center w-full h-full">
                   <h3 className="text-green-500 text-[20px] font-bold">
                     {author.name}
                   </h3>

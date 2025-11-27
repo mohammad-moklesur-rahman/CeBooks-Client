@@ -22,10 +22,6 @@ const categories = [
 ];
 
 const RecommendedBooks = () => {
-  const handleCategoryClick = (categoryName) => {
-    // Navigate to category page
-    // router.push(`/category-filtered-product/${categoryName}`);
-  };
 
   return (
     <div className="bg-primary-content pb-20 pt-10">
@@ -37,7 +33,7 @@ const RecommendedBooks = () => {
           >
             Recommended eBooks for You
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 h-96 gap-8 px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4">
             {categories.map((category) => (
               <div
                 data-aos="fade-up"

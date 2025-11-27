@@ -49,9 +49,6 @@ const Navbar = () => {
     </>
   );
 
-  if (!isLoaded) {
-    return <div>Loading...</div>;
-  }
   return (
     <div className="bg-primary">
       <MyContainer>
@@ -94,13 +91,18 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1">{menu}</ul>
           </div>
           <div className="navbar-end">
-            {user ? (
+            {!isLoaded ? (
+              // Only button area loading spinner
+              <div className="w-24 h-10 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-white"></div>
+              </div>
+            ) : user ? (
               <div className="dropdown dropdown-end">
                 <div
                   tabIndex={0}
                   className="avatar avatar-online avatar-placeholder"
                 >
-                  <div className="bg-neutral text-neutral-content w-12 cursor-pointer rounded-full">
+                  <div className="bg-neutral text-neutral-content w-10 cursor-pointer rounded-full">
                     <span className="text-xl">
                       <Image
                         src={user?.imageUrl}

@@ -2,16 +2,25 @@
 
 import MyContainer from "@/components/MyContainer";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { useSignIn } from "@clerk/nextjs";
+import { useSignIn, useUser } from "@clerk/nextjs";
 import { useClerk } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const { isLoaded, signIn, setActive } = useSignIn();
   const [show, setShow] = useState(true);
+  const { user, isSignedIn } = useUser(); // get user info
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isLoaded && isSignedIn) {
+      router.replace("/"); // redirect to home
+    }
+  }, [isLoaded, isSignedIn, router]);
 
   const {
     register,

@@ -2,15 +2,24 @@
 
 import MyContainer from "@/components/MyContainer";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { useSignUp, useClerk } from "@clerk/nextjs";
+import { useSignUp, useClerk, useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 const Register = () => {
   const { isLoaded, signUp } = useSignUp();
   const [show, setShow] = useState(true);
+  const { user, isSignedIn } = useUser(); // get user info
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isLoaded && isSignedIn) {
+      router.replace("/"); // redirect to home
+    }
+  }, [isLoaded, isSignedIn, router]);
 
   const {
     register,

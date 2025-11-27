@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import MyContainer from "./MyContainer";
 import { useUser } from "@clerk/nextjs";
 import Swal from "sweetalert2";
+import LoadingSpinner from "./LoadingSpinner";
 
 const ManageEBookTable = () => {
   const { user } = useUser();
@@ -15,7 +16,7 @@ const ManageEBookTable = () => {
   const loadData = async () => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/ebooks/my-ebooks?email=${user?.primaryEmailAddress.emailAddress}`
+        `https://cebooks.vercel.app/api/ebooks/my-ebooks?email=${user?.primaryEmailAddress.emailAddress}`
       );
       const result = await res.json();
       setMyProducts(result);
@@ -42,7 +43,7 @@ const ManageEBookTable = () => {
       if (result.isConfirmed) {
         try {
           // * delete product
-          await fetch(`http://localhost:5000/api/ebooks/delete/${id}`, {
+          await fetch(`https://cebooks.vercel.app/api/ebooks/delete/${id}`, {
             method: "DELETE",
           });
 
@@ -56,8 +57,8 @@ const ManageEBookTable = () => {
       }
     });
   };
-  console.log(myProducts);
-  if (loading) return <p className="text-center py-10">Loading...</p>;
+  
+  if (loading) return <LoadingSpinner />
 
   return (
     <div className="bg-primary-content px-2 pb-20 pt-10">

@@ -73,7 +73,7 @@ export default function DashboardLayout({ children }) {
             {/* List item */}
             <li>
               <Link
-                href="/addebook"
+                href="/dashboard/addebook"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right py-2.5"
                 data-tip="Add eBook"
               >
@@ -86,7 +86,7 @@ export default function DashboardLayout({ children }) {
             {/*Manage item */}
             <li>
               <Link
-                href="/manage-ebook"
+                href="/dashboard/manage-ebook"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right py-2.5"
                 data-tip="Manage eBook"
               >

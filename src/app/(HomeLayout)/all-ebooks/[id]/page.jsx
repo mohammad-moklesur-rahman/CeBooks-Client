@@ -44,11 +44,11 @@ const eBooksDetails = async ({ params }) => {
                 <figure>
                   <Image
                     src={thumbnailUrl}
-                    width={500}
-                    height={500}
+                    width={200}
+                    height={250}
                     alt="category"
                     unoptimized
-                    className="w-full h-100"
+                    className="w-full h-70 md:h-100"
                   />
                 </figure>
                 <p className="text-gray-800 mt-6">

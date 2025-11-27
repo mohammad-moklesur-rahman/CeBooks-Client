@@ -33,7 +33,7 @@ export default function EbookForm() {
             }
           }
 
-          const res = await fetch("http://localhost:5000/api/ebooks", {
+          const res = await fetch("https://cebooks.vercel.app/api/ebooks", {
             method: "POST",
             body: formData,
           });
