@@ -34,7 +34,7 @@ const LatestAdditions = async () => {
                 <div className="card bg-accent-content h-full shadow-sm">
                   <figure className="px-4 pt-4">
                     <Image
-                      src={Info.thumbnailUrl}
+                      src={Info.thumbnail}
                       width={500}
                       height={500}
                       unoptimized

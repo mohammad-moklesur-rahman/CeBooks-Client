@@ -136,40 +136,16 @@ export default function EbookForm() {
             )}
           </div>
 
-          {/* eBook thumbnail */}
+          {/* eBook thumbnail URL */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text my-1">eBook Thumbnail</span>
+              <span className="label-text my-1">eBook Thumbnail URL</span>
             </label>
             <input
-              type="file"
+              type="url"
               {...register("thumbnail")}
-              className="file-input outline-primary focus:border-secondary w-full"
-            />
-          </div>
-
-          {/* Upload pdf */}
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text my-1">Upload eBook (PDF)</span>
-            </label>
-            <input
-              type="file"
-              accept="application/pdf"
-              {...register("pdf", {
-                required: "PDF file is required",
-                validate: {
-                  isPdf: (value) => {
-                    const file = value[0];
-                    if (!file) return "Please select a file";
-                    return (
-                      file.type === "application/pdf" ||
-                      "Only PDF files are allowed"
-                    );
-                  },
-                },
-              })}
-              className="file-input outline-primary focus:border-secondary w-full"
+              placeholder="Thumbnail URL"
+              className="file-input outline-primary focus:border-secondary px-2 w-full"
             />
           </div>
 

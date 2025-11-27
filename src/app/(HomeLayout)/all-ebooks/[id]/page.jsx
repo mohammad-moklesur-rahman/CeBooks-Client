@@ -15,7 +15,7 @@ const eBooksDetails = async ({ params }) => {
 
   const {
     name,
-    thumbnailUrl,
+    thumbnail,
     category,
     subCategory,
     author,
@@ -43,7 +43,7 @@ const eBooksDetails = async ({ params }) => {
               <div data-aos="fade-up">
                 <figure>
                   <Image
-                    src={thumbnailUrl}
+                    src={thumbnail}
                     width={200}
                     height={250}
                     alt="category"
