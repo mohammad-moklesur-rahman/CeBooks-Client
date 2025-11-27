@@ -2,6 +2,7 @@
 
 import { useUser } from "@clerk/nextjs";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 export default function EbookForm() {
   const { user } = useUser();
@@ -9,32 +10,44 @@ export default function EbookForm() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = async (data) => {
-    try {
-      const formData = new FormData();
-      for (const key in data) {
-        if (data[key] instanceof FileList) {
-          formData.append(key, data[key][0]);
-        } else {
-          formData.append(key, data[key]);
+    Swal.fire({
+      title: "Do you want to save the eBook?",
+      text: "This eBook will be saved.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, save it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const formData = new FormData();
+          for (const key in data) {
+            if (data[key] instanceof FileList) {
+              formData.append(key, data[key][0]);
+            } else {
+              formData.append(key, data[key]);
+            }
+          }
+
+          const res = await fetch("http://localhost:5000/api/ebooks", {
+            method: "POST",
+            body: formData,
+          });
+
+          const result = await res.json();
+
+          Swal.fire("Saved!", "eBook has been saved.", "success");
+          // 🔥 RESET THE FORM HERE
+          reset();
+        } catch {
+          Swal.fire("Error!", "Failed to add eBook.", "error");
         }
       }
-
-      const res = await fetch("http://localhost:5000/api/ebooks", {
-        method: "POST",
-        body: formData,
-      });
-
-      const result = await res.json();
-      console.log(result);
-      alert("eBook added successfully!");
-    } catch (err) {
-      console.error(err);
-      alert("Failed to add eBook");
-    }
+    });
   };
 
   return (

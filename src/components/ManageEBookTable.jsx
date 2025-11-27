@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import MyContainer from "./MyContainer";
 import { useUser } from "@clerk/nextjs";
+import Swal from "sweetalert2";
 
 const ManageEBookTable = () => {
   const { user } = useUser();
@@ -31,22 +32,36 @@ const ManageEBookTable = () => {
   }, []);
 
   const handleDelete = async (id) => {
-    try {
-      await fetch(`http://localhost:5000/api/ebooks/${id}`, {
-        method: "DELETE",
-      });
-      alert("Deleted successfully!");
-      loadData(); // reload data
-    } catch (err) {
-      alert("Delete failed");
-    }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "This eBook will be permanently deleted!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          // * delete product
+          await fetch(`http://localhost:5000/api/ebooks/delete/${id}`, {
+            method: "DELETE",
+          });
+
+          Swal.fire("Deleted!", "eBook has been deleted.", "success");
+
+          // Update UI
+          loadData(); // reload data
+        } catch {
+          Swal.fire("Error!", "Failed to delete eBook.", "error");
+        }
+      }
+    });
   };
   console.log(myProducts);
   if (loading) return <p className="text-center py-10">Loading...</p>;
 
   return (
-    <div className="bg-secondary px-2 pb-20 pt-10">
-      <h2 className="text-center text-2xl text-accent font-bold pb-10">
+    <div className="bg-primary-content px-2 pb-20 pt-10">
+      <h2 className="text-center text-2xl text-green-500 font-bold pb-10">
         My Listings
       </h2>
 
@@ -77,8 +92,8 @@ const ManageEBookTable = () => {
                             <Image
                               src={p.thumbnailUrl}
                               alt={p.name}
-                              width={48}
-                              height={48}
+                              width={50}
+                              height={50}
                               unoptimized
                             />
                           </div>
@@ -108,7 +123,7 @@ const ManageEBookTable = () => {
                 ) : (
                   <tr>
                     <td colSpan={7} className="text-center py-4">
-                      No products found.
+                      No eBooks found.
                     </td>
                   </tr>
                 )}
