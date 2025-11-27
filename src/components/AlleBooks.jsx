@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import MyContainer from "./MyContainer";
+import Link from "next/link";
 
 const AlleBooks = () => {
   const [data, setData] = useState([]);
@@ -14,7 +15,7 @@ const AlleBooks = () => {
   const router = useRouter();
   const searchTimeout = useRef(null);
 
-  // Fetch products
+  // Fetch eBooks
   async function getAlleBooks() {
     const res = await fetch("http://localhost:5000/api/ebooks", {
       cache: "no-store",
@@ -150,9 +151,12 @@ const AlleBooks = () => {
                         {Info.price}
                       </p>
                       <div className="card-actions">
-                        <button className="btn myBtn border-yellow-500 w-full">
+                        <Link
+                          href={`/all-ebooks/${Info._id}`}
+                          className="btn btn-outline text-yellow-500 mt-2 hover:bg-gray-600 w-full"
+                        >
                           See Details
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </div>

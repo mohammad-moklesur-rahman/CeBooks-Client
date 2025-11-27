@@ -3,15 +3,19 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import MyContainer from "./MyContainer";
+import { useUser } from "@clerk/nextjs";
 
 const ManageEBookTable = () => {
+  const { user } = useUser();
   const [myProducts, setMyProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   // Fetch data on client
   const loadData = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/ebooks");
+      const res = await fetch(
+        `http://localhost:5000/api/ebooks/my-ebooks?email=${user?.primaryEmailAddress.emailAddress}`
+      );
       const result = await res.json();
       setMyProducts(result);
     } catch (err) {
@@ -37,7 +41,7 @@ const ManageEBookTable = () => {
       alert("Delete failed");
     }
   };
- console.log(myProducts)
+  console.log(myProducts);
   if (loading) return <p className="text-center py-10">Loading...</p>;
 
   return (
@@ -89,7 +93,9 @@ const ManageEBookTable = () => {
                       <td>{p.location}</td>
                       <td>{p.date}</td>
                       <td>
-                        <button className="btn btn-sm bg-accent mr-2">View</button>
+                        <button className="btn btn-sm bg-accent mr-2">
+                          View
+                        </button>
                         <button
                           className="btn btn-sm btn-error"
                           onClick={() => handleDelete(p._id)}

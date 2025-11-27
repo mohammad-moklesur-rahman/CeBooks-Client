@@ -1,16 +1,16 @@
 "use client";
 
+import { useUser } from "@clerk/nextjs";
 import { useForm } from "react-hook-form";
 
 export default function EbookForm() {
+  const { user } = useUser();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm();
-
-  const selectedCategory = watch("category");
 
   const onSubmit = async (data) => {
     try {
@@ -248,7 +248,7 @@ export default function EbookForm() {
             <input
               type="email"
               {...register("email")}
-              value="user@example.com"
+              value={user?.primaryEmailAddress.emailAddress}
               readOnly
               className="input outline-primary focus:border-secondary w-full bg-gray-100 cursor-not-allowed"
             />

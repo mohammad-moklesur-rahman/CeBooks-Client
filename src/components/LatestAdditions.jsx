@@ -1,5 +1,6 @@
 import Image from "next/image";
 import MyContainer from "./MyContainer";
+import Link from "next/link";
 
 async function getLatestData() {
   const res = await fetch("http://localhost:5000/api/ebooks/latest-ebooks", {
@@ -10,20 +11,6 @@ async function getLatestData() {
 
 const LatestAdditions = async () => {
   const latestData = await getLatestData();
-  /* author
-category
-date
-description
-email
-location
-name
-pdfUrl
-price
-publisher
-subCategory
-thumbnailUrl
-_id
- */
   return (
     <div className="bg-base-300 pb-20">
       <MyContainer>
@@ -67,9 +54,12 @@ _id
                       {Info.price}
                     </p>
                     <div className="card-actions">
-                      <button className="btn myBtn border-yellow-500 w-full">
+                      <Link
+                        href={`/all-ebooks/${Info._id}`}
+                        className="btn btn-outline text-yellow-500 mt-2 hover:bg-gray-600 w-full"
+                      >
                         See Details
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>

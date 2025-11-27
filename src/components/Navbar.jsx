@@ -5,24 +5,46 @@ import Logo from "./Logo";
 import MyContainer from "./MyContainer";
 import { useClerk, useUser } from "@clerk/nextjs";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const { signOut } = useClerk();
-  const { isLoaded, isSignedIn, user } = useUser();
+  const { isLoaded, user } = useUser();
+
+  // 2. Get the current path
+  const pathname = usePathname();
+
+  const getLinkClasses = (href) => {
+    // 3. Check the current path
+    const isActive = pathname === href;
+
+    //active link style
+    return isActive
+      ? "text-white font-bold bg-secondary rounded-lg"
+      : "text-gray-800 font-semibold";
+  };
 
   const menu = (
     <>
       <li>
-        <Link href="/">Home</Link>
+        <Link href="/" className={getLinkClasses("/")}>
+          Home
+        </Link>
       </li>
       <li>
-        <Link href="/all-ebooks">All eBooks</Link>
+        <Link href="/all-ebooks" className={getLinkClasses("/all-ebooks")}>
+          All eBooks
+        </Link>
       </li>
       <li>
-        <Link href="/about">About</Link>
+        <Link href="/about" className={getLinkClasses("/about")}>
+          About
+        </Link>
       </li>
       <li>
-        <Link href="/blog">Blog</Link>
+        <Link href="/blog" className={getLinkClasses("/blog")}>
+          Blog
+        </Link>
       </li>
     </>
   );
@@ -79,7 +101,14 @@ const Navbar = () => {
                   className="avatar avatar-online avatar-placeholder"
                 >
                   <div className="bg-neutral text-neutral-content w-12 cursor-pointer rounded-full">
-                    <span className="text-xl"><Image src={user?.imageUrl} width={50} height={50} alt={user?.fullName || "User Avatar"} /></span>
+                    <span className="text-xl">
+                      <Image
+                        src={user?.imageUrl}
+                        width={50}
+                        height={50}
+                        alt={user?.fullName || "User Avatar"}
+                      />
+                    </span>
                   </div>
                 </div>
 
