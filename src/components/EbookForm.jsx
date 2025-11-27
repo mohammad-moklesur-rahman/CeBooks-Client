@@ -24,26 +24,20 @@ export default function EbookForm() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const formData = new FormData();
-          for (const key in data) {
-            if (data[key] instanceof FileList) {
-              formData.append(key, data[key][0]);
-            } else {
-              formData.append(key, data[key]);
-            }
-          }
-
+          // Send JSON instead of FormData
           const res = await fetch("https://cebooks.vercel.app/api/ebooks", {
             method: "POST",
-            body: formData,
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
           });
 
           const result = await res.json();
 
           Swal.fire("Saved!", "eBook has been saved.", "success");
-          // 🔥 RESET THE FORM HERE
           reset();
-        } catch {
+        } catch (error) {
           Swal.fire("Error!", "Failed to add eBook.", "error");
         }
       }
@@ -98,7 +92,7 @@ export default function EbookForm() {
             </select>
           </div>
 
-          {/* Add SubCategory */}
+          {/* SubCategory */}
           <div className="form-control">
             <label className="label">
               <span className="label-text my-1">Add SubCategory</span>
@@ -136,7 +130,7 @@ export default function EbookForm() {
             )}
           </div>
 
-          {/* eBook thumbnail URL */}
+          {/* Thumbnail URL */}
           <div className="form-control">
             <label className="label">
               <span className="label-text my-1">eBook Thumbnail URL</span>
@@ -145,7 +139,7 @@ export default function EbookForm() {
               type="url"
               {...register("thumbnail")}
               placeholder="Thumbnail URL"
-              className="file-input outline-primary focus:border-secondary px-2 w-full"
+              className="input outline-primary focus:border-secondary px-2 w-full"
             />
           </div>
 
@@ -169,7 +163,7 @@ export default function EbookForm() {
             )}
           </div>
 
-          {/* Author Name */}
+          {/* Author */}
           <div className="form-control">
             <label className="label">
               <span className="label-text my-1">Author Name</span>
@@ -184,7 +178,7 @@ export default function EbookForm() {
             )}
           </div>
 
-          {/* Publisher Name */}
+          {/* Publisher */}
           <div className="form-control">
             <label className="label">
               <span className="label-text my-1">Publisher Name</span>
@@ -214,7 +208,7 @@ export default function EbookForm() {
             )}
           </div>
 
-          {/* Published Date */}
+          {/* Date */}
           <div className="form-control">
             <label className="label">
               <span className="label-text my-1">Pick-Up Published Date</span>
@@ -229,7 +223,7 @@ export default function EbookForm() {
             )}
           </div>
 
-          {/* Email (readonly) */}
+          {/* Email */}
           <div className="form-control">
             <label className="label">
               <span className="label-text my-1">Email</span>

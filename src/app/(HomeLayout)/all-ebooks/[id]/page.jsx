@@ -5,7 +5,7 @@ const eBooksDetails = async ({ params }) => {
   const { id } = await params;
 
   async function getEBookById() {
-    const res = await fetch(`http://localhost:5000/api/ebooks/${id}`, {
+    const res = await fetch(`https://cebooks.vercel.app/api/ebooks/${id}`, {
       cache: "no-store",
     });
     return res.json();
