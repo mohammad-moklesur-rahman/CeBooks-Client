@@ -1,3 +1,4 @@
+import Logo from "@/components/Logo";
 import Link from "next/link";
 import { HiOutlineDocumentAdd } from "react-icons/hi";
 import { TiDocumentDelete } from "react-icons/ti";
@@ -8,29 +9,36 @@ export default function DashboardLayout({ children }) {
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         {/* Navbar */}
-        <nav className="navbar w-full bg-base-300">
-          <label
-            htmlFor="my-drawer-4"
-            aria-label="open sidebar"
-            className="btn btn-square btn-ghost"
-          >
-            {/* Sidebar toggle icon */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              strokeWidth="2"
-              fill="none"
-              stroke="currentColor"
-              className="my-1.5 inline-block size-4"
+        <nav className="navbar w-full bg-primary flex justify-between items-center">
+          <div>
+            <label
+              htmlFor="my-drawer-4"
+              aria-label="open sidebar"
+              className="btn btn-square btn-ghost"
             >
-              <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
-              <path d="M9 4v16"></path>
-              <path d="M14 10l2 2l-2 2"></path>
-            </svg>
-          </label>
-          <Link href='/dashboard' className="px-4">Dashboard</Link>
+              {/* Sidebar toggle icon */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                strokeWidth="2"
+                fill="none"
+                stroke="currentColor"
+                className="my-1.5 inline-block size-4"
+              >
+                <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+                <path d="M9 4v16"></path>
+                <path d="M14 10l2 2l-2 2"></path>
+              </svg>
+            </label>
+            <Link href="/dashboard" className="px-4 font-bold">
+              Dashboard
+            </Link>
+          </div>
+          <div className="text-[20px] font-bold mr-6">
+            <Link href='/'><Logo /></Link>
+          </div>
         </nav>
         {/* Page content here */}
         <div className="p-4">{children}</div>
@@ -42,14 +50,14 @@ export default function DashboardLayout({ children }) {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+        <div className="flex min-h-full flex-col items-start bg-secondary-content is-drawer-close:w-14 is-drawer-open:w-64">
           {/* Sidebar content here */}
           <ul className="menu w-full grow">
             {/* List item */}
             <li>
               <Link
                 href="/"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-base-100 font-semibold"
                 data-tip="Homepage"
               >
                 {/* Home icon */}
@@ -74,7 +82,7 @@ export default function DashboardLayout({ children }) {
             <li>
               <Link
                 href="/dashboard/addebook"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right py-2.5"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right py-2.5 text-base-100 font-semibold"
                 data-tip="Add eBook"
               >
                 {/* add document icon */}
@@ -82,12 +90,12 @@ export default function DashboardLayout({ children }) {
                 <span className="is-drawer-close:hidden">Add eBook</span>
               </Link>
             </li>
-            
+
             {/*Manage item */}
             <li>
               <Link
                 href="/dashboard/manage-ebook"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right py-2.5"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right py-2.5 text-base-100 font-semibold"
                 data-tip="Manage eBook"
               >
                 {/* add document icon */}
@@ -95,7 +103,6 @@ export default function DashboardLayout({ children }) {
                 <span className="is-drawer-close:hidden">Manage eBook</span>
               </Link>
             </li>
-
           </ul>
         </div>
       </div>

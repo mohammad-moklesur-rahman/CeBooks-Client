@@ -5,13 +5,13 @@ const Footer = () => {
   return (
     <footer className="footer footer-horizontal footer-center bg-primary text-base-content rounded p-10">
       <nav className="grid grid-flow-col gap-4">
-        <Link href="/" className="link link-hover">
+        <Link href="/" className="link link-hover text-[16px] font-semibold">
           Home
         </Link>
-        <Link href="/about" className="link link-hover">
+        <Link href="/about" className="link link-hover text-[16px] font-semibold">
           About
         </Link>
-        <Link href="/blog" className="link link-hover">
+        <Link href="/blog" className="link link-hover text-[16px] font-semibold">
           Blog
         </Link>
       </nav>
@@ -29,7 +29,7 @@ const Footer = () => {
         </div>
       </nav>
       <aside>
-        <p>
+        <p className="font-medium">
           Copyright © {new Date().getFullYear()} - All right reserved by CeBooks
         </p>
       </aside>

@@ -91,8 +91,8 @@ const ManageEBookTable = () => {
                         <div className="avatar">
                           <div className="mask mask-squircle h-12 w-12">
                             <Image
-                              src={p.thumbnailUrl}
-                              alt={p.name}
+                              src={p.thumbnail}
+                              alt={p.subCategory}
                               width={50}
                               height={50}
                               unoptimized

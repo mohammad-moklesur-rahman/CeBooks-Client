@@ -1,7 +1,10 @@
+import DashboardDesign from "@/components/DashboardDesign";
 
 
 export default function DashboardHome() {
   return (
-    <h2>DashboardHome Need Design</h2>
+    <div>
+      <DashboardDesign />
+    </div>
   );
 }
