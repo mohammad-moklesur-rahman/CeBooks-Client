@@ -1,6 +1,6 @@
 # 📚 CeBooks – Full-Stack eBook Marketplace
 
-A modern full-stack web application built using Next.js 16, React 19, TailwindCSS 4, Clerk Authentication, and a backend powered by Express, MongoDB.
+A modern full-stack web application built using Next.js 16, React 19, TailwindCSS 4, Clerk Authentication, and a backend powered by Express and MongoDB.
 CeBooks allows users to browse, read, and manage eBooks with modern UI/UX, secure authentication, and optimized API performance.
 
 ---
@@ -28,7 +28,6 @@ CeBooks allows users to browse, read, and manage eBooks with modern UI/UX, secur
 ### ⭐ Backend (Server)
 - **Express.js v5**
 - **MongoDB** for data storage
-- File uploads via **Multer**
 - CORS enabled for API communication
 - Dotenv for config management
 - Nodemon for development
