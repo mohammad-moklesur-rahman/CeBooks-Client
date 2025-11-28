@@ -26,7 +26,7 @@ export default function AboutPage() {
           <div className="flex flex-col md:flex-row lg:flex-row-reverse gap-8">
             <div className="flex justify-center min-h-[300px] items-center">
               <Image
-                src="/images/about-cover.jpg"
+                src="https://i.postimg.cc/rFT2MxKN/about_cover.jpg"
                 alt="About CeBooks"
                 width={280}
                 height={280}
